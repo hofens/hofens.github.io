@@ -46,4 +46,3 @@ Check out the [contributing guide](.github/CONTRIBUTING.md) to get started.
 ## License
 
 [MIT License](./LICENSE)
-# hofens.github.io

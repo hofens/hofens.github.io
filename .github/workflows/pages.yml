@@ -4,7 +4,7 @@ name: Deploy Hugo site to Pages
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["main"]
+    branches: ["master"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -31,7 +31,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.132.2
+      HUGO_VERSION: 0.131.0
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -56,12 +56,13 @@ jobs:
           HUGO_ENV: production
         run: |
           hugo \
-            --gc --minify \
+            --minify \
+            --themesDir=../.. --source=exampleSite \
             --baseURL "${{ steps.pages.outputs.base_url }}/"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
+          path: ./exampleSite/public
 
   # Deployment job
   deploy:
